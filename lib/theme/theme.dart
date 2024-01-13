@@ -3,20 +3,18 @@ import 'package:flutter/material.dart';
 ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     useMaterial3: true,
-    iconTheme: const IconThemeData(color: Colors.black),
     colorScheme: ColorScheme.light(
-        background: Colors.grey.shade100,
-        secondary: Colors.grey.shade200,
-        primary: Colors.grey.shade400,
+        background: Colors.grey.shade300,
+        primary: Colors.grey.shade200,
+        secondary: Colors.grey.shade400,
         inversePrimary: Colors.grey.shade800));
 
 
 ThemeData darkTheme = ThemeData(
-    brightness: Brightness.light,
-    useMaterial3: true,
-    iconTheme: const IconThemeData(color: Colors.white),
-    colorScheme: ColorScheme.light(
+  useMaterial3: true,
+    brightness: Brightness.dark,
+    colorScheme: ColorScheme.dark(
         background: Colors.grey.shade900,
-        secondary: Colors.grey.shade700,
-        primary: Colors.grey.shade400,
-        inversePrimary: Colors.grey.shade100));
+        secondary: Colors.grey.shade800,
+        primary: Colors.grey.shade700,
+        inversePrimary: Colors.grey.shade300));

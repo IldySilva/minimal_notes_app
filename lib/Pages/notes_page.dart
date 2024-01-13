@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:minimal_notes_app/components/note_tile.dart';
 import 'package:minimal_notes_app/repo/notes_repo.dart';
 import 'package:provider/provider.dart';
 
@@ -24,8 +25,13 @@ class _NotesPageState extends State<NotesPage> {
               controller: controller,
             ),
             actions: [
-              ElevatedButton(onPressed: () {}, child: const Text("Cancel")),
-              ElevatedButton(
+              MaterialButton(onPressed: () {
+
+                Navigator.pop(context);
+                controller.clear();
+
+              }, child: const Text("Cancel")),
+              MaterialButton(
                   onPressed: () {
                     context.read<NotesDb>().addNote(controller.text);
                     Navigator.pop(context);
@@ -51,8 +57,12 @@ class _NotesPageState extends State<NotesPage> {
               controller: controller,
             ),
             actions: [
-              ElevatedButton(onPressed: () {}, child: const Text("Cancel")),
-              ElevatedButton(
+              MaterialButton(onPressed: () {
+                Navigator.pop(context);
+                controller.clear();
+
+              }, child: const Text("Cancel")),
+              MaterialButton(
                   onPressed: () {
                     context.read<NotesDb>().update(note.id, controller.text);
                     Navigator.pop(context);
@@ -84,9 +94,8 @@ class _NotesPageState extends State<NotesPage> {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () async {
-          createNote();
-        },
+
+        onPressed: () =>  createNote(),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,28 +114,10 @@ class _NotesPageState extends State<NotesPage> {
                 itemCount: currentNotes.length,
                 itemBuilder: (c, index) {
                   Note note = currentNotes[index];
-                  return ListTile(
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.edit),
-                          onPressed: () {
-                            updateNote(note);
-                          },
-                        ),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.delete,
-                          ),
-                          onPressed: () {
-                            context.read<NotesDb>().delete(note.id);
-                          },
-                        ),
-                      ],
-                    ),
-                    title: Text(note.text),
-                  );
+                  return NoteTile(
+                      note: note,
+                      onEdit: () => updateNote(note),
+                      onDelete: () => context.read<NotesDb>().delete(note.id));
                 }),
           ),
         ],

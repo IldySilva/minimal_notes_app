@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:minimal_notes_app/repo/notes_repo.dart';
-import 'package:minimal_notes_app/theme/theme.dart';
 import 'package:minimal_notes_app/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 

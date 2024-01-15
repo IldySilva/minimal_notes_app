@@ -6,6 +6,9 @@ ThemeData lightTheme = ThemeData(
     colorScheme: ColorScheme.light(
         background: Colors.grey.shade300,
         primary: Colors.grey.shade200,
+        onPrimary: Colors.white,
+        primaryContainer: Colors.grey.shade300,
+        onPrimaryContainer:Colors.grey.shade500,
         secondary: Colors.grey.shade400,
         inversePrimary: Colors.grey.shade800));
 

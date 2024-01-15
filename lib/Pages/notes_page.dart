@@ -21,16 +21,14 @@ class _NotesPageState extends State<NotesPage> {
         context: context,
         builder: (c) {
           return AlertDialog(
+            title: const Text("New Note"),
+
+            backgroundColor: Theme.of(context).colorScheme.background,
             content: TextField(
               controller: controller,
             ),
             actions: [
-              MaterialButton(onPressed: () {
 
-                Navigator.pop(context);
-                controller.clear();
-
-              }, child: const Text("Cancel")),
               MaterialButton(
                   onPressed: () {
                     context.read<NotesDb>().addNote(controller.text);
@@ -38,6 +36,13 @@ class _NotesPageState extends State<NotesPage> {
                     controller.clear();
                   },
                   child: const Text("Ok"))
+              ,
+              MaterialButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    controller.clear();
+                  },
+                  child: const Text("Cancel")),
             ],
           );
         });
@@ -53,22 +58,26 @@ class _NotesPageState extends State<NotesPage> {
         context: context,
         builder: (c) {
           return AlertDialog(
+            title: const Text("Edit Note"),
+            backgroundColor: Theme.of(context).colorScheme.background,
             content: TextField(
               controller: controller,
             ),
             actions: [
-              MaterialButton(onPressed: () {
-                Navigator.pop(context);
-                controller.clear();
 
-              }, child: const Text("Cancel")),
-              MaterialButton(
+              ElevatedButton(
                   onPressed: () {
                     context.read<NotesDb>().update(note.id, controller.text);
                     Navigator.pop(context);
                     controller.clear();
                   },
-                  child: const Text("Ok"))
+                  child: const Text("Save")),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    controller.clear();
+                  },
+                  child: const Text("Cancel")),
             ],
           );
         });
@@ -93,9 +102,11 @@ class _NotesPageState extends State<NotesPage> {
         backgroundColor: Colors.transparent,
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-
-        onPressed: () =>  createNote(),
+        child: Icon(
+          Icons.add,
+          color: Theme.of(context).colorScheme.inversePrimary,
+        ),
+        onPressed: () => createNote(),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

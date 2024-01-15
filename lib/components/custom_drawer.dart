@@ -11,7 +11,7 @@ class CustomDrawer extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       child: Column(
         children: [
-          const DrawerHeader(child: Icon(Icons.list_alt)),
+          const DrawerHeader(child: Icon(Icons.edit_calendar)),
           DrawerTile(
               title: 'Notes',
               icon: Icons.note,
